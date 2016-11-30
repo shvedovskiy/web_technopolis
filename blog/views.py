@@ -1,4 +1,6 @@
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, redirect
+from django.core.urlresolvers import reverse
 from django.utils import timezone
 from .models import Post
 from .forms import PostForm
@@ -24,7 +26,8 @@ def post_new(request):
             post.author = request.user
             post.published_date = timezone.now()
             post.save()
-            return redirect('blog.views.post_detail', pk=post.pk)
-        else:
-            form = PostForm()
-        return render(request, 'blog/post_edit.html', {'form': form})
+            # return redirect('blog.views.post_detail', pk=post.pk)
+            return HttpResponseRedirect(reverse('blog:post_detail', args=(post.pk,)))
+    else:
+        form = PostForm()
+    return render(request, 'blog/post_edit.html', {'form': form})
