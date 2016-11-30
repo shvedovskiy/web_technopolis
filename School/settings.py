@@ -7,7 +7,7 @@ SECRET_KEY = 'u+qex5$t*i93mn^q3-rpvk=@)*(gf^$^urn!y^#*s^r!ycle4_'
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['shvedovskiy.pythonanywhere.com']
 
 
 # Application definition
