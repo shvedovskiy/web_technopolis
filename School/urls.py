@@ -20,5 +20,5 @@ urlpatterns = [
     url(r'^polls/', include('polls.urls')),
     # (r'^course/', include('course.urls')),
     url(r'^admin/', admin.site.urls),
-
+    url(r'', include('blog.urls')),
 ]
