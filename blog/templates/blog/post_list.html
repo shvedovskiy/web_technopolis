@@ -1,4 +1,6 @@
 {% extends 'blog/base.html' %}
+
+<!-- Страница всех постов: / -->
 {% block content %}
     <div class="row">
         <div class="col-md-8">
@@ -8,11 +10,10 @@
                         {{ post.published_date }}
                     </div>
                     <h3><a href="{% url 'blog:post_detail' pk=post.pk %}">{{ post.title }}</a></h3>
-                    <p>{{ post.text|linebreaksbr }}</p>
+                    <p>{{ post.text|truncatechars:200 }}</p>
                 </div>
                 <hr>
             {% endfor %}
         </div>
     </div>
-
 {% endblock %}

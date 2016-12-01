@@ -9,7 +9,7 @@ body {
 .main-title {
     background-color: #ff9400;
     margin-top: 0;
-    padding: 20px 20px 20px 40px;
+    padding: 10px 20px 20px 40px;
 }
 
 .main-title h1,
@@ -28,6 +28,7 @@ body {
 .date {
     float: right;
     color: #828282;
+    margin-top: 6px;
 }
 
 .save {
@@ -45,7 +46,11 @@ body {
     color: #ffffff;
     float: right;
     font-size: 26pt;
-    margin-right: 20px;
+    margin: 25px;
+}
+
+.post-header {
+    margin-top: 15px;
 }
 
 .post {
@@ -55,4 +60,9 @@ body {
 .post h3 a,
 .post h3 a:visited {
     color: #000000;
+}
+
+.edit {
+    line-height: 0;
+    margin-bottom: 3px;
 }

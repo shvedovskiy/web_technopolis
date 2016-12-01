@@ -1,16 +1,12 @@
 import os
 
-
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 SECRET_KEY = 'u+qex5$t*i93mn^q3-rpvk=@)*(gf^$^urn!y^#*s^r!ycle4_'
-
 DEBUG = True
-
-ALLOWED_HOSTS = ['shvedovskiy.pythonanywhere.com']
-
-
-# Application definition
+ALLOWED_HOSTS = [
+    'shvedovskiy.pythonanywhere.com'
+]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -35,11 +31,12 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'School.urls'
+LOGIN_REDIRECT_URL = '/'
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates'),
+        'DIRS': [
                  os.path.join(BASE_DIR, 'polls/templates'),
                  os.path.join(BASE_DIR, 'course/templates'),
                  os.path.join(BASE_DIR, 'blog/templates'),
@@ -81,13 +78,9 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 LANGUAGE_CODE = 'en-us'
-
-TIME_ZONE = 'UTC'
-
+TIME_ZONE = 'Europe/Moscow'
 USE_I18N = True
-
 USE_L10N = True
-
 USE_TZ = True
 
 STATIC_URL = '/static/'
