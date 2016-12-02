@@ -37,6 +37,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
+                 os.path.join(BASE_DIR, 'templates'),
                  os.path.join(BASE_DIR, 'polls/templates'),
                  os.path.join(BASE_DIR, 'course/templates'),
                  os.path.join(BASE_DIR, 'blog/templates'),
@@ -57,8 +58,12 @@ WSGI_APPLICATION = 'School.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'school',
+        'USER': 'oleg',
+        'PASSWORD': '',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 
