@@ -18,6 +18,7 @@ INSTALLED_APPS = [
     'polls.apps.PollsConfig',
     'course.apps.CourseConfig',
     'blog.apps.BlogConfig',
+    'loginsys.apps.LoginsysConfig',
 ]
 
 MIDDLEWARE = [
@@ -41,6 +42,7 @@ TEMPLATES = [
                  os.path.join(BASE_DIR, 'polls/templates'),
                  os.path.join(BASE_DIR, 'course/templates'),
                  os.path.join(BASE_DIR, 'blog/templates'),
+                 os.path.join(BASE_DIR, 'loginsys/templates'),
                  ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -56,14 +58,21 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'School.wsgi.application'
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'school',
+#         'USER': 'oleg',
+#         'PASSWORD': '',
+#         'HOST': 'localhost',
+#         'PORT': '',
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'school',
-        'USER': 'oleg',
-        'PASSWORD': '',
-        'HOST': 'localhost',
-        'PORT': '',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 
@@ -82,7 +91,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ru-RU'
 TIME_ZONE = 'Europe/Moscow'
 USE_I18N = True
 USE_L10N = True
