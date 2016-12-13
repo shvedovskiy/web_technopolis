@@ -5,6 +5,9 @@ from django.utils import timezone
 class Post(models.Model):
     class Meta:
         db_table = 'post'
+        verbose_name = u'Запись'
+        verbose_name_plural = u'Записи'
+        ordering = ('-created_date',)
 
     author = models.ForeignKey('auth.User')
     title = models.CharField(max_length=200)
@@ -27,6 +30,8 @@ class Post(models.Model):
 class Comment(models.Model):
     class Meta:
         db_table = 'comment'
+        verbose_name = u'Комментарий'
+        verbose_name_plural = u'Комментарии'
 
     post = models.ForeignKey('blog.Post', related_name='comments')
     author = models.ForeignKey('auth.User')
