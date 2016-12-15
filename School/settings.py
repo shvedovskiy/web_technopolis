@@ -5,7 +5,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'u+qex5$t*i93mn^q3-rpvk=@)*(gf^$^urn!y^#*s^r!ycle4_'
 DEBUG = True
 ALLOWED_HOSTS = [
-    'shvedovskiy.pythonanywhere.com'
+    'shvedovskiy.pythonanywhere.com',
+    '127.0.0.1',
 ]
 
 INSTALLED_APPS = [
@@ -98,7 +99,8 @@ USE_L10N = True
 USE_TZ = True
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'blog/static'),
 ]
