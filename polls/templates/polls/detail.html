@@ -6,6 +6,8 @@
 </head>
 <body>
     <h1>{{ question.question_text }}</h1>
+
+    {{ question.file.url }}
     
     {% if error_message %}
         <p><strong>{{ error_message }}</strong></p>

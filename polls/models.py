@@ -1,12 +1,16 @@
 from __future__ import unicode_literals
 from django.db import models
 from django.utils import timezone
+from django.conf import settings
 import datetime
 
 
 class Question(models.Model):
+    author = models.ForeignKey(settings.AUTH_USER_MODEL)
     question_text = models.CharField(max_length=200)
     pub_date = models.DateTimeField('date published')
+    file = models.FileField()
+    # image = models.ImageField()  # Pillow package required
 
     def was_published_recently(self):
         now = timezone.now()

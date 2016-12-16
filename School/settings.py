@@ -62,9 +62,9 @@ WSGI_APPLICATION = 'School.wsgi.application'
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'school',
+#         'NAME': 'blog',
 #         'USER': 'oleg',
-#         'PASSWORD': '',
+#         'PASSWORD': '121212',
 #         'HOST': 'localhost',
 #         'PORT': '',
 #     }
@@ -104,3 +104,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'blog/static'),
 ]
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')

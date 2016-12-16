@@ -8,9 +8,27 @@
 </head>
 <body>
     {% if latest_questions %}
+        <form action="" method="get">
+{#            <label for="sort_field">Sort by: </label>#}
+{#            <select name="sort_field" id="sort_field">#}
+{#                <option value="id">Identifier</option>#}
+{#                <option value="pub_date">Publication date</option>#}
+{#                <option value="question_text">Text</option>#}
+{#            </select>#}
+{#            <input type="search" name="search">#}
+            {{ sort_search_form.sort_field.label_tag }}
+            {{ sort_search_form.sort_field }}
+            {{ sort_search_form.search }}
+            {{ sort_search_form.sort_field.errors }}
+            <input type="submit">
+        </form>
+        <a href="{% url 'polls:new' %}">Create question</a>
         <ul>
             {% for question in latest_questions %}
-                <li><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li>
+                <li>{{ question.author }}
+                    <br>
+                    <a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a>
+                </li>
             {% endfor %}
         </ul>
     {% else %}
