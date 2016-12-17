@@ -41,6 +41,9 @@
         {% endif %}
     </div>
     <script>
-        $("#comments-list").load("{% url 'blog:post_comments' pk=post.pk %}");
+        function load_comments() {
+            $("#comments-list").load("{% url 'blog:post_comments' pk=post.pk %}");
+        }
+        window.setInterval(load_comments, 10000);
     </script>
 {% endblock %}
