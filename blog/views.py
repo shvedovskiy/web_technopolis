@@ -2,6 +2,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
 from django.core.urlresolvers import reverse
 from django.template.context_processors import csrf
+from django.views import generic
 from django.utils import timezone
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
@@ -29,6 +30,12 @@ def post_detail(request, pk):
     args['form'] = comment_form
     args['username'] = auth.get_user(request).username
     return render(request, 'blog/post_detail.html', args)
+
+
+class PostComments(generic.DetailView):
+    template_name = 'blog/post_comments.html'
+    model = Post
+    context_object_name = 'post'
 
 
 @login_required
