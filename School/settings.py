@@ -17,9 +17,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'polls.apps.PollsConfig',
-    'course.apps.CourseConfig',
     'blog.apps.BlogConfig',
     'loginsys.apps.LoginsysConfig',
+    'rank.apps.RankConfig',
 ]
 
 MIDDLEWARE = [
@@ -34,6 +34,7 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'School.urls'
 LOGIN_REDIRECT_URL = '/'
+LOGIN_URL = '/auth/login/'
 
 TEMPLATES = [
     {
@@ -41,9 +42,9 @@ TEMPLATES = [
         'DIRS': [
                  os.path.join(BASE_DIR, 'templates'),
                  os.path.join(BASE_DIR, 'polls/templates'),
-                 os.path.join(BASE_DIR, 'course/templates'),
                  os.path.join(BASE_DIR, 'blog/templates'),
                  os.path.join(BASE_DIR, 'loginsys/templates'),
+                 os.path.join(BASE_DIR, 'rank/templates'),
                  ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -103,6 +104,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'blog/static'),
+    os.path.join(BASE_DIR, 'polls/static'),
+    os.path.join(BASE_DIR, 'rank/static'),
 ]
 
 MEDIA_URL = '/media/'

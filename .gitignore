@@ -3,10 +3,7 @@ __pycache__
 db.sqlite3
 .DS_Store
 .idea
-blog/migrations/0002_comment.py
-blog/migrations/0003_auto_20161202_0038.py
-blog/migrations/0004_auto_20161203_0035.py
-blog/migrations/0005_auto_20161203_0222.py
-blog/migrations/0006_auto_20161203_0223.py
-blog/migrations/0007_auto_20161203_1405.py
-course/migrations/0001_initial.py
+blog/migrations/
+course/migrations/
+polls/migrations/
+rank/migrations/

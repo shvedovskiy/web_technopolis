@@ -3,6 +3,7 @@ from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.utils import timezone
 from django.views import generic
+from django.db.models import Count
 from django.shortcuts import resolve_url
 from .models import Choice, Question
 from .forms import QuestionListForm, NewQuestionForm
@@ -15,14 +16,17 @@ class IndexView(generic.ListView):
     def dispatch(self, request, *args, **kwargs):
         self.sort_search_form = QuestionListForm(request.GET)
         self.sort_search_form.is_valid()
+        self.search = self.sort_search_form.cleaned_data.get('search')
+        self.sort_field = self.sort_search_form.cleaned_data.get('sort_field')
         return super(IndexView, self).dispatch(request, *args, **kwargs)
 
     def get_queryset(self):
-        queryset = Question.objects.filter(pub_date__lte=timezone.now())  # author=self.request.user
-        if self.sort_search_form.cleaned_data.get('search'):
-            queryset = queryset.filter(question_text__icontains=self.sort_search_form.cleaned_data['search'])
-        if self.sort_search_form.cleaned_data.get('sort_field'):
-            queryset = queryset.order_by(self.sort_search_form.cleaned_data['sort_field'])[:5]
+        queryset = super(IndexView, self).get_queryset().filter(pub_date__lte=timezone.now())  # author=self.request.user
+        if self.search:
+            queryset = queryset.filter(question_text__icontains=self.search)
+        if self.sort_field:
+            queryset = queryset.order_by(self.sort_field)[:5]
+        queryset = queryset.annotate(choices_count=Count('choices'))
         return queryset
 
     def get_context_data(self, **kwargs):

@@ -81,6 +81,7 @@ def post_edit(request, pk):
     return render(request, 'blog/post_edit.html', {'form': form})
 
 
+@login_required
 def add_like(request, pk, page=1):
     if pk in request.COOKIES:
         return HttpResponseRedirect(reverse('blog:page_post_list', args=(page,)))
