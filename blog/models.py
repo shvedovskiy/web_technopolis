@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.db import models
 from django.utils import timezone
 
@@ -15,6 +16,11 @@ class Post(models.Model):
     created_date = models.DateTimeField(default=timezone.now)
     published_date = models.DateTimeField(blank=True, null=True)
     likes = models.IntegerField(default=0)
+    # likes = models.ManyToManyField(User, related_name='likes')
+
+    #@property
+    #def total_likes(self):
+    #    return self.likes.count()
 
     def publish(self):
         self.published_date = timezone.now()

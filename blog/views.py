@@ -1,3 +1,5 @@
+# import json
+# from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
 from django.core.urlresolvers import reverse
@@ -7,6 +9,8 @@ from django.utils import timezone
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
+# from django.views.decorators.http import require_POST
+
 from .models import Post, Comment
 from .forms import PostForm, CommentForm
 
@@ -92,6 +96,22 @@ def add_like(request, pk, page=1):
         response = HttpResponseRedirect(reverse('blog:page_post_list', args=(page,)))
         response.set_cookie(pk, 'test')
         return response
+# @login_required
+# @require_POST
+# def add_like(request):
+#     if request.method == 'POST':
+#         user = request.user
+#         pk = request.POST.get('pk')
+#         post = get_object_or_404(Post, pk=pk)
+#
+#         if post.likes.filter(id=user.id).exists():
+#             post.likes.remove(user)
+#             message = 'You disliked this'
+#         else:
+#             post.likes.add(user)
+#             message = 'You liked this'
+#         args = {'likes_count': post.total_likes, 'message': message}
+#         return HttpResponse(json.dumps(args), content_type='application/json')
 
 
 @login_required
