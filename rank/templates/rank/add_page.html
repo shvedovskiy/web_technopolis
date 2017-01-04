@@ -1,0 +1,27 @@
+{% extends 'rank/base.html' %}
+
+{% block title %}Add page{% endblock %}
+
+{% block body %}
+    <div class="page-header">
+        <h1>Add page</h1>
+    </div>
+    {% if category %}
+        <link rel="stylesheet" href="http://getbootstrap.com/examples/signin/signin.css">
+        <form role="form" action="{% url 'rank:add_page' category.slug %}" method="post" id="page_form">
+            <h2 class="form-signin-heading">Add a page to <a href="{% url 'rank:category' category.slug %}">{{ category.name }}</a></h2>
+            {% csrf_token %}
+            {% for hidden in form.hidden_fields %}
+                {{ hidden }}
+            {% endfor %}
+            {% for field in form.visible_fields %}
+                {{ field.errors }}
+                {{ field.help_text }}
+                {{ field }}
+            {% endfor %}
+            <button class="btn btn-primary" type="submit" name="submit">Add page</button>
+        </form>
+    {% else %}
+        <p>This category does not exist.</p>
+    {% endif %}
+{% endblock %}

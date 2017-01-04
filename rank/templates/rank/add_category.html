@@ -1,0 +1,23 @@
+{% extends 'rank/base.html' %}
+
+{% block title %}Add category{% endblock %}
+
+{% block body %}
+    <div class="page-header">
+        <h1>Add category</h1>
+    </div>
+    <link rel="stylesheet" href="http://getbootstrap.com/examples/signin/signin.css">
+    <form role="form" action="{% url 'rank:add_category' category.slug %}" method="post" id="category_form">
+        <h2 class="form-signin-heading">Add a new category</h2>
+        {% csrf_token %}
+        {% for hidden in form.hidden_fields %}
+            {{ hidden }}
+        {% endfor %}
+        {% for field in form.visible_fields %}
+            {{ field.errors }}
+            {{ field.help_text }}
+            {{ field }}
+        {% endfor %}
+        <button class="btn btn-primary" type="submit" name="submit">Add category</button>
+    </form>
+{% endblock %}
