@@ -8,20 +8,28 @@ from django.views import generic
 from django.utils import timezone
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
-from django.core.paginator import Paginator
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 # from django.views.decorators.http import require_POST
 
 from .models import Post, Comment
 from .forms import PostForm, CommentForm
 
 
-def post_list(request, page_number=1):
+def post_list(request):
     posts = Post.objects\
         .filter(published_date__lte=timezone.now())\
         .order_by('published_date')
-    current_page = Paginator(posts, 5)
+    paginator = Paginator(posts, 5)
+    page = request.GET.get('page', 1)
+    try:
+        current_page = paginator.page(page)
+    except PageNotAnInteger:
+        current_page = paginator.page(1)
+    except EmptyPage:
+        current_page = paginator.page(paginator.num_pages)
     return render(request, 'blog/post_list.html', {
-        'posts': current_page.page(page_number),
+        'posts': current_page,
+        'paginator': paginator,
         'username': auth.get_user(request).username
     })
 

@@ -7,3 +7,9 @@ blog/migrations/
 course/migrations/
 polls/migrations/
 rank/migrations/
+/static/css/
+/static/admin/
+/static/fonts/
+/static/polls/
+/static/images/
+/static/js/

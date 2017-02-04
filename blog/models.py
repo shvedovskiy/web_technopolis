@@ -1,4 +1,5 @@
 from django.contrib.auth.models import User
+from django.core.urlresolvers import reverse
 from django.db import models
 from django.utils import timezone
 
@@ -21,6 +22,9 @@ class Post(models.Model):
     #@property
     #def total_likes(self):
     #    return self.likes.count()
+
+    def get_url(self):
+        return reverse('blog:post_detail', kwargs={'pk': self.pk})
 
     def publish(self):
         self.published_date = timezone.now()
